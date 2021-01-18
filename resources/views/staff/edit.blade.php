@@ -19,6 +19,8 @@
 		</div>
 		<form method="POST" action="{{route('staff.update', $staff -> id)}}" enctype="multipart/form-data">
 		  @csrf
+{{--            @method('PUT')--}}
+            @method('PATCH')
             <div class="form-group">
 		    <label for="exampleInputName1">Name</label>
 		    <input name="name" value="{{$staff -> name}}" type="text" class="form-control" id="exampleInputName1" aria-describedby="emailHelp">

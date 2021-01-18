@@ -48,7 +48,11 @@
                 <td class="text-right">
                   <a href="{{route('staff.show', $staff -> id)}}" class="btn btn-info">View</a>
                   <a href="{{route('staff.edit', $staff -> id)}}" class="btn btn-warning">Edit</a>
-                  <a href="{{route('staff.delete', $staff ->  id)}}" class="btn btn-danger" id="delete-btn">Delete</a>
+                    <form style="display: inline;" action="{{route('staff.delete', $staff ->  id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-primary">Delete</button>
+                    </form>
                 </td>
               </tr>
               @endforeach

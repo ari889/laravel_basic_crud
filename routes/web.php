@@ -23,8 +23,9 @@ Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'staff'], funct
    Route::get('/show/{id}', 'StaffController@show') -> name('staff.show');
    Route::get('/edit/{id}', 'StaffController@edit') -> name('staff.edit');
    Route::post('/store', 'StaffController@store') -> name('staff.store');
-   Route::get('/delete/{id}', 'StaffController@delete') -> name('staff.delete');
-   Route::post('/update/{id}', 'StaffController@update') -> name('staff.update');
+   Route::delete('/delete/{id}', 'StaffController@delete') -> name('staff.delete');
+//   Route::put('/update/{id}', 'StaffController@update') -> name('staff.update');
+   Route::patch('/update/{id}', 'StaffController@update') -> name('staff.update');
 });
 
 //route for teacher
