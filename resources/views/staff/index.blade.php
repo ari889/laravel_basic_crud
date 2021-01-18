@@ -47,7 +47,7 @@
                 <td>{{/*$staff -> created_at -> diffForHumans()*/ date('F d, Y', strtotime($staff -> created_at))}}</td>
                 <td class="text-right">
                   <a href="{{route('staff.show', $staff -> id)}}" class="btn btn-info">View</a>
-                  <a href="#" class="btn btn-warning">Edit</a>
+                  <a href="{{route('staff.edit', $staff -> id)}}" class="btn btn-warning">Edit</a>
                   <a href="{{route('staff.delete', $staff ->  id)}}" class="btn btn-danger" id="delete-btn">Delete</a>
                 </td>
               </tr>

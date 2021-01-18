@@ -21,8 +21,10 @@ Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'staff'], funct
    Route::get('/', 'StaffController@index') -> name('staff.index');
    Route::get('/create', 'StaffController@create') -> name('staff.create');
    Route::get('/show/{id}', 'StaffController@show') -> name('staff.show');
+   Route::get('/edit/{id}', 'StaffController@edit') -> name('staff.edit');
    Route::post('/store', 'StaffController@store') -> name('staff.store');
    Route::get('/delete/{id}', 'StaffController@delete') -> name('staff.delete');
+   Route::post('/update/{id}', 'StaffController@update') -> name('staff.update');
 });
 
 //route for teacher

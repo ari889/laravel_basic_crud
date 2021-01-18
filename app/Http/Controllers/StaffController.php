@@ -89,4 +89,54 @@ class StaffController extends Controller
         return redirect() -> back() -> with('success', 'Staff deleted successful');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function edit($id){
+        $all_data = Staff::find($id);
+        return view('staff.edit', [
+            'staff' => $all_data
+        ]);
+    }
+
+    public function update(Request $request, $id){
+        $update_data = Staff::find($id);
+
+        $this -> validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'cell' => 'required',
+            'uname' => 'required | min:2 | max:6',
+            'age' => 'required'
+        ],[
+            'name.required' => 'Name must not be empty.',
+            'email.required' => 'Email must not be empty.',
+            'cell.required' => 'Cell must not be empty.',
+            'pass.required' => 'Password must not be empty.'
+        ]);
+
+        if($request -> hasFile('new_photo')){
+            $file = $request -> file('new_photo');
+            $unique_name = md5(time().rand()).'.'.$file -> getClientOriginalExtension();
+            $file -> move(public_path('media/staff'), $unique_name);
+
+            if(file_exists('media/staff/'.$request -> old_photo)){
+                unlink('media/staff/'.$request -> old_photo);
+            }
+        }else{
+            $unique_name = $request -> old_photo;
+        }
+
+        $update_data -> name = $request -> name;
+        $update_data -> email = $request -> email;
+        $update_data -> cell = $request -> cell;
+        $update_data -> uname = $request -> uname;
+        $update_data -> age = $request -> age;
+        $update_data -> photo = $unique_name;
+        $update_data -> update();
+
+        return redirect() -> back() -> with('success', 'Data updated successful');
+    }
+
 }
