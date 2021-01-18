@@ -29,6 +29,7 @@
               <th scope="col">Email</th>
               <th scope="col">Cell</th>
               <th scope="col">Username</th>
+              <th scope="col">Image</th>
               <th scope="col">Age</th>
               <th scope="col">Time</th>
             </tr>
@@ -41,6 +42,7 @@
                 <td>{{$staff -> email}}</td>
                 <td>{{$staff -> cell}}</td>
                 <td>{{$staff -> uname}}</td>
+                <td><img src="{{ URL::to('') }}/media/staff/{{$staff -> photo}}" alt="" class="img-fluid"></td>
                 <td>{{$staff -> age}}</td>
                 <td>{{/*$staff -> created_at -> diffForHumans()*/ date('F d, Y', strtotime($staff -> created_at))}}</td>
                 <td class="text-right">

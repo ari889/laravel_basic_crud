@@ -59,6 +59,8 @@ class StaffController extends Controller
         if($request -> hasFile('photo')){
             $file = $request -> file('photo');
             $unique_name = md5(time().rand()).'.'. $file -> getClientOriginalExtension();
+
+            $file -> move(public_path('media/staff'), $unique_name);
         }
 
         Staff::create([
@@ -70,8 +72,6 @@ class StaffController extends Controller
            'age' => $request -> age,
            'photo' => $unique_name,
         ]);
-//
-//
         return redirect() -> back() -> with('success', 'Staff added successfully');
     }
 
@@ -80,8 +80,11 @@ class StaffController extends Controller
      */
     public function delete($id){
         $delete_data = Staff::find($id);
-
         $delete_data -> delete();
+
+        if(file_exists('media/staff/'.$delete_data -> photo)){
+            unlink('media/staff/'.$delete_data -> photo);
+        }
 
         return redirect() -> back() -> with('success', 'Staff deleted successful');
     }

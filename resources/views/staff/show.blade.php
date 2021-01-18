@@ -11,7 +11,7 @@
 		<a href="{{route('staff.index')}}" class="btn btn-info">Back</a>
     <div class="card mt-3">
       <div class="card-body">
-        <img src="{{asset('images/image.jpg')}}" alt="" class="user-image shadow-sm">
+        <img src="{{ URL::to('') }}/media/staff/{{$staff -> photo}}" alt="" class="user-image shadow-sm">
         <h3 class="text-center">{{$staff -> name}}</h3>
         <table class="table">
           <tr>
